@@ -308,7 +308,7 @@ plt.show()
 
 
 """
-Comparing Person 1 and Person 2 Music 
+Comparing Person 1 and Person 2 Top Artists 
 """
 # --- Person 1 Top 10 Songs ---
 top_10_artist_count = df["Artist_Name"].value_counts()

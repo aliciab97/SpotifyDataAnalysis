@@ -27,7 +27,7 @@ logging.basicConfig(filename=log_path, level=logging.INFO, format="%(asctime)s -
 logging.info("Script started")
 
 # --- Spotify API Setup ---
-sp = spotipy.Spotify(auth_manager=SpotifyClientCredentials(CLIENT_ID, CLIENT_SECRET), requests_timeout=20)
+sp = spotipy.Spotify(auth_manager=SpotifyClientCredentials(CLIENT_ID, CLIENT_SECRET), requests_timeout = 20)
 
 # --- Load Raw data ---
 df = pd.read_json(RAW_PATH)
@@ -229,7 +229,7 @@ df_exploded = df_exploded[df_exploded['genres'].notnull() & (df_exploded['genres
 
 # --- Overall Genre Plot ---
 all_genres = df_exploded['genres'].tolist()
-clustered_genres = cluster_genres(all_genres, threshold=80)
+clustered_genres = cluster_genres(all_genres, threshold = 80)
 counter = Counter(clustered_genres)
 top_10_overall = counter.most_common(10)
 plot_donut_chart(top_10_overall, "Top 10 Genres Overall")
@@ -287,7 +287,7 @@ selected_date = pd.to_datetime(user_input).date()
 
 df_day = df[df['Day_Song_Played'].dt.date == selected_date].copy()
 
-df_day["Time_of_Day_Played"] = pd.to_datetime(df_day["Time_of_Day_Played"], format="%H:%M:%S")
+df_day["Time_of_Day_Played"] = pd.to_datetime(df_day["Time_of_Day_Played"], format = "%H:%M:%S")
 
 df_day['hour'] = df_day['Time_of_Day_Played'].dt.hour
 
@@ -346,7 +346,7 @@ plt.xlabel('Number of Listens', fontsize = 8)
 plt.title('Person 1 Top 10 Artists')
 plt.legend(fontsize = 9)
 
-for i, (v1, v2) in enumerate(zip(top_10_artist_count.values, p1_in_p2_df_counts.reindex(top_10_artist_count.index, fill_value=0).values)):
+for i, (v1, v2) in enumerate(zip(top_10_artist_count.values, p1_in_p2_df_counts.reindex(top_10_artist_count.index, fill_value = 0).values)):
     plt.text(v1 + 0.5, i - bar_height/2, str(v1), va = 'center', fontsize = 7)
     plt.text(v2 + 0.5, i + bar_height/2, str(v2), va = 'center', fontsize = 7)
 
@@ -375,7 +375,7 @@ plt.xlabel('Number of Listens', fontsize = 8)
 plt.title('Person 2 Top 10 Artists')
 plt.legend(fontsize = 9)
 
-for i, (v1, v2) in enumerate(zip(top_10_artist_count_person_2.values, p2_in_p1_df_counts.reindex(top_10_artist_count_person_2.index, fill_value=0).values)):
+for i, (v1, v2) in enumerate(zip(top_10_artist_count_person_2.values, p2_in_p1_df_counts.reindex(top_10_artist_count_person_2.index, fill_value = 0).values)):
     plt.text(v1 + 0.5, i - bar_height/2, str(v1), va = 'center', fontsize = 7)
     plt.text(v2 + 0.5, i + bar_height/2, str(v2), va = 'center', fontsize = 7)
 

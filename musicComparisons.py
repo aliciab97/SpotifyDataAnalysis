@@ -365,8 +365,8 @@ index = np.arange(len(top_10_artist_count_person_2.index))
 bar_height = 0.35
 
 
-plt.barh(index - bar_height/2, top_10_artist_count_person_2, bar_height, label = 'Person 1', color = '#5F9EA0')
-plt.barh(index + bar_height/2, p2_in_p1_df_counts, bar_height, label ='Person 2', color = '#4682B4')
+plt.barh(index - bar_height/2, p2_in_p1_df_counts, bar_height, label = 'Person 1', color = '#5F9EA0')
+plt.barh(index + bar_height/2, top_10_artist_count_person_2, bar_height, label ='Person 2', color = '#4682B4')
 
 plt.yticks(index, top_10_artist_count_person_2.index, fontsize = 8)
 plt.xticks(fontsize = 8) 
@@ -375,7 +375,7 @@ plt.xlabel('Number of Listens', fontsize = 8)
 plt.title('Person 2 Top 10 Artists')
 plt.legend(fontsize = 9)
 
-for i, (v1, v2) in enumerate(zip(top_10_artist_count_person_2.values, p2_in_p1_df_counts.reindex(top_10_artist_count_person_2.index, fill_value = 0).values)):
+for i, (v1, v2) in enumerate(zip(p2_in_p1_df_counts.reindex(top_10_artist_count_person_2.index, fill_value = 0).values, top_10_artist_count_person_2.values)):
     plt.text(v1 + 0.5, i - bar_height/2, str(v1), va = 'center', fontsize = 7)
     plt.text(v2 + 0.5, i + bar_height/2, str(v2), va = 'center', fontsize = 7)
 
